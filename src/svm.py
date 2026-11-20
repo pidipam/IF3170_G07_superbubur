@@ -31,7 +31,14 @@ class SVM:
             raise Exception("kernel name is not valid.")
 
     def fit(self, X, y):
-
+        if self.gamma == "scale":
+            var = X.var()
+            self._gamma_val = 1.0 / (n_features * var) if var > 0 else 1.0
+        elif self.gamma == "auto":
+            self._gamma_val = 1.0 / n_features
+        else:
+            self._gamma_val = float(self.gamma)
+            
         # prediction class should be either 1 or -1 
         # this step could be done in feature eng
         X = np.asarray(X, dtype=float)
