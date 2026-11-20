@@ -20,11 +20,13 @@ class SVM:
         if self.kernel == "linear":
             return np.dot(X1, X2.T)
         elif self.kernel == "poly":
-            # (X1 . X2^T + c)^d (gonna make this later, not researched yet)
-            pass
+            return (self._gamma_val * np.dot(X1, X2.T) + self.coef0) ** self.degree
         elif self.kernel == "gauss":
-            # exp(-gamma * ||X1 - X2||^2) (gonna make this later, not researched yet)
-            pass
+            X1_sq = np.sum(X1 ** 2, axis=1).reshape(-1, 1)
+            X2_sq = np.sum(X2 ** 2, axis=1).reshape(1, -1)
+            sq_dists = X1_sq + X2_sq - 2.0 * np.dot(X1, X2.T)
+            sq_dists = np.maximum(sq_dists, 0.0)
+            return np.exp(-self._gamma_val * sq_dists)
         else:
             raise Exception("kernel name is not valid.")
 
