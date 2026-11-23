@@ -119,7 +119,6 @@ class PCA:
 
     @classmethod
     def load(cls, path: str | Path) -> "PCA":
-        """Muat model PCA dari berkas JSON."""
         payload = json.loads(Path(path).read_text(encoding="utf-8"))
         model = cls(**payload["params"])
         model.n_components_ = payload["n_components_"]
