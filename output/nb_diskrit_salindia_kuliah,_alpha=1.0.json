@@ -1,0 +1,11 @@
+{
+  "method": "discrete",
+  "params": {
+    "method": "discrete",
+    "alpha": 1.0,
+    "n_bins": 10,
+    "var_smoothing": 1e-09,
+    "priors": null
+  },
+  "submodel_path": "nb_diskrit_salindia_kuliah,_alpha=1.0.sub.json"
+}

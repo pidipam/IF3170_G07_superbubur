@@ -1,0 +1,212 @@
+{
+  "params": {
+    "scaling": "standard",
+    "encoding": "onehot",
+    "categorical_missing": "mode",
+    "clip_quantiles": [
+      0.01,
+      0.99
+    ],
+    "log_cols": [
+      "prior_cancellations",
+      "prior_completed_bookings",
+      "nightly_rate_idr"
+    ],
+    "drop_features": [
+      "arrival_month"
+    ]
+  },
+  "state": {
+    "median": {
+      "num_adults": 2.0,
+      "num_children": 0.0,
+      "weekend_nights": 1.0,
+      "weekday_nights": 2.0,
+      "needs_parking": 0.0,
+      "days_before_arrival": 58.0,
+      "arrival_year": 2024.0,
+      "arrival_month": 8.0,
+      "arrival_day": 15.0,
+      "is_returning_guest": 0.0,
+      "prior_cancellations": 0.0,
+      "prior_completed_bookings": 0.0,
+      "nightly_rate_idr": 1645000.0,
+      "special_requests": 0.0
+    },
+    "mode": {
+      "meal_package": "Breakfast",
+      "room_category": "Type B",
+      "booking_channel": "Online Travel Agent"
+    },
+    "categories": {
+      "meal_package": [
+        "Breakfast",
+        "Full Board",
+        "Half Board",
+        "Room Only",
+        "Unknown"
+      ],
+      "room_category": [
+        "Type A",
+        "Type B",
+        "Type C",
+        "Type D",
+        "Type E",
+        "Type F",
+        "Type G",
+        "Unknown"
+      ],
+      "booking_channel": [
+        "Airline",
+        "Complimentary",
+        "Corporate",
+        "Offline Agent",
+        "Online Travel Agent",
+        "Unknown"
+      ]
+    },
+    "rate_median_by_channel": {
+      "Airline": 1595000.0,
+      "Complimentary": 0.0,
+      "Corporate": 1290000.0,
+      "Offline Agent": 1472000.0,
+      "Online Travel Agent": 1770000.0
+    },
+    "numeric_features": [
+      "num_adults",
+      "num_children",
+      "weekend_nights",
+      "weekday_nights",
+      "needs_parking",
+      "days_before_arrival",
+      "arrival_year",
+      "arrival_month",
+      "arrival_day",
+      "is_returning_guest",
+      "prior_cancellations",
+      "prior_completed_bookings",
+      "nightly_rate_idr",
+      "special_requests",
+      "total_nights",
+      "total_guests",
+      "arrival_dow",
+      "arrival_month_sin",
+      "arrival_month_cos"
+    ],
+    "clip_bounds": {
+      "num_children": [
+        0.0,
+        2.0
+      ],
+      "weekend_nights": [
+        0.0,
+        2.0
+      ],
+      "weekday_nights": [
+        0.0,
+        6.0
+      ],
+      "total_nights": [
+        1.0,
+        9.0
+      ],
+      "total_guests": [
+        1.0,
+        4.0
+      ],
+      "prior_completed_bookings": [
+        0.0,
+        4.0
+      ],
+      "nightly_rate_idr": [
+        0.0,
+        3450000.0
+      ],
+      "days_before_arrival": [
+        0.0,
+        342.0
+      ]
+    },
+    "scale_shift": {
+      "num_adults": 1.8519535181626865,
+      "num_children": 0.10421813523652668,
+      "weekend_nights": 0.7997072010247964,
+      "weekday_nights": 2.1859273492542775,
+      "needs_parking": 0.029142648000731998,
+      "days_before_arrival": 83.83411108061122,
+      "arrival_year": 2023.8211638759265,
+      "arrival_month": 7.388736389422637,
+      "arrival_day": 15.504208985268551,
+      "is_returning_guest": 0.024979412572056,
+      "prior_cancellations": 0.009138369831038981,
+      "prior_completed_bookings": 0.02717391974704,
+      "nightly_rate_idr": 14.093615146384108,
+      "special_requests": 0.6059108793119224,
+      "total_nights": 3.001280995516516,
+      "total_guests": 1.9564004025985908,
+      "arrival_dow": 3.082624210815262,
+      "arrival_month_sin": -0.15532365198637962,
+      "arrival_month_cos": -0.1311819912553663
+    },
+    "scale_div": {
+      "num_adults": 0.5083672471481895,
+      "num_children": 0.39117068745252187,
+      "weekend_nights": 0.8277685401522662,
+      "weekday_nights": 1.294469596022818,
+      "needs_parking": 0.16820628427094342,
+      "days_before_arrival": 82.97484658848141,
+      "arrival_year": 0.383215037283129,
+      "arrival_month": 3.0797487793079514,
+      "arrival_day": 8.798519745420649,
+      "is_returning_guest": 0.1560623001227747,
+      "prior_cancellations": 0.10930154597651787,
+      "prior_completed_bookings": 0.19138220380489196,
+      "nightly_rate_idr": 1.7993343913707194,
+      "special_requests": 0.7817842299704166,
+      "total_nights": 1.631058413366709,
+      "total_guests": 0.634703008095533,
+      "arrival_dow": 2.06066806003745,
+      "arrival_month_sin": 0.7340790779216233,
+      "arrival_month_cos": 0.6479149293399793
+    },
+    "keep_idx": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37
+    ]
+  }
+}
