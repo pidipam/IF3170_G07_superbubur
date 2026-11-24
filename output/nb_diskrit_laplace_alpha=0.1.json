@@ -1,0 +1,11 @@
+{
+  "method": "discrete",
+  "params": {
+    "method": "discrete",
+    "alpha": 0.1,
+    "n_bins": 10,
+    "var_smoothing": 1e-09,
+    "priors": null
+  },
+  "submodel_path": "nb_diskrit_laplace_alpha=0.1.sub.json"
+}
