@@ -1,4 +1,6 @@
+import hashlib
 from pathlib import Path
+
 import numpy as np
 
 _EPS = 1e-12
@@ -26,6 +28,7 @@ class KNN:
         )
         self.batch_size = int(batch_size)
 
+        self._nn_cache = None  # (kunci, jarak, indeks) pencarian tetangga terakhir
         self.X_train_ = None
         self.y_train_ = None
         self.classes_ = None
@@ -45,6 +48,7 @@ class KNN:
 
         self.X_train_ = X
         self.y_train_ = y
+        self._nn_cache = None
         self.classes_, self._y_idx = np.unique(y, return_inverse=True)
         self._split_feature_types(X.shape[1])
         return self
@@ -91,16 +95,27 @@ class KNN:
         if X.shape[1] != self.X_train_.shape[1]:
             raise ValueError("jumlah kolom X berbeda dengan data latih")
 
+        # predict() dan predict_proba() pada X yang sama memakai tetangga yang sama: hasil
+        # pencarian terakhir disimpan (kunci = k, bentuk, dan hash isi X) agar tidak dihitung dua kali.
+        key = (k, X.shape, hashlib.blake2b(X.tobytes(), digest_size=16).hexdigest())
+        if self._nn_cache is not None and self._nn_cache[0] == key:
+            dist, idx = self._nn_cache[1].copy(), self._nn_cache[2].copy()
+            return (dist, idx) if return_distance else idx
+
         all_idx, all_dist = [], []
         for start in range(0, len(X), self.batch_size):
             D = self._distance_batch(X[start : start + self.batch_size])
             idx = np.argsort(D, axis=1, kind="stable")[:, :k]
             all_idx.append(idx)
-            if return_distance:
-                all_dist.append(np.take_along_axis(D, idx, axis=1))
+            all_dist.append(np.take_along_axis(D, idx, axis=1))
 
-        idx = np.vstack(all_idx)
-        return (np.vstack(all_dist), idx) if return_distance else idx
+        idx, dist = np.vstack(all_idx), np.vstack(all_dist)
+        self._nn_cache = (key, dist.copy(), idx.copy())
+        return (dist, idx) if return_distance else idx
+
+    def clear_cache(self) -> None:
+        """Hapus cache pencarian tetangga (mis. agar pengukuran waktu prediksi tidak terbantu cache)."""
+        self._nn_cache = None
 
     # Prediction
     def vote(self, dist: np.ndarray, idx: np.ndarray, k: int, weights: str | None = None):
