@@ -280,11 +280,6 @@ class DecisionTree:
 
         return node
 
-    def predict(self, X):                # label 0/1
-        probs = self.predict_probability(X)
-        best_class_idx = np.argmax(probs, axis=1)
-        return self.classes_[best_class_idx]
-
     def predict_probability(self, X):     # probabilitas tiap kelas, shape (n, 2)
         X = np.asarray(X, dtype=object)
 
@@ -297,6 +292,11 @@ class DecisionTree:
             probs.append(row_prob)
 
         return np.asarray(probs)
+
+    def predict(self, X):                # label 0/1
+        probs = self.predict_probability(X)
+        best_class_idx = np.argmax(probs, axis=1)
+        return self.classes_[best_class_idx]
 
     def save(self, path):
         with open(path, "wb") as f:

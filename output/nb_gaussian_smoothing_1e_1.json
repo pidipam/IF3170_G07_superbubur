@@ -1,0 +1,11 @@
+{
+  "method": "gaussian",
+  "params": {
+    "method": "gaussian",
+    "alpha": 1.0,
+    "n_bins": 10,
+    "var_smoothing": 0.1,
+    "priors": null
+  },
+  "submodel_path": "nb_gaussian_smoothing_1e_1.sub.json"
+}
